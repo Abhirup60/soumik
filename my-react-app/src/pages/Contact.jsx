@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Contact = () => {
   const [user, setUser] = useState({
@@ -30,7 +31,8 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        alert("Message sent successfully!");
+        // alert("Message sent successfully!");
+        toast.success(" Message sent successfully!");
         setUser({ email: "", phone: "", message: "" });
         navigate("/");
       } else {
