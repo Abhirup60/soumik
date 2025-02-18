@@ -7,7 +7,7 @@ const AdminContact = () => {
   const deleteContactById = async (id) => {
     console.log(id);
     try {
-      const response = await fetch(`http://localhost:8000/api/form/contact/delete/${id}`, {
+      const response = await fetch(`https://soumik-server.onrender.com/api/form/contact/delete/${id}`, {
         method: "DELETE",
       });
 
@@ -24,7 +24,7 @@ const AdminContact = () => {
 
   const getAllContactData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/form/contact-details", {
+      const response = await fetch("https://soumik-server.onrender.com/api/form/contact-details", {
         method: "GET",
       });
 

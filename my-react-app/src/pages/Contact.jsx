@@ -21,7 +21,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/form/contact", {
+      const response = await fetch("https://soumik-server.onrender.com/api/form/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
