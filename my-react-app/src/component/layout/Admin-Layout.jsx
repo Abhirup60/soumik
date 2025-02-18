@@ -10,7 +10,7 @@ const AdminLayout = () => {
  useEffect(()=>{
   const check = prompt("Are you admin?")
 
-  if(check == "yes"){
+  if(check == "953"){
     setIsAdmin(true);
   }
  },[]);
