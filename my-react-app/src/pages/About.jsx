@@ -64,7 +64,7 @@ const About = () => {
         {/* Download Resume */}
         <div className="mt-4">
           <a
-            href="/public/resumes/soumik.pdf" 
+            href="/resumes/soumik.pdf" 
             download
             className="bg-teal-600 text-white px-6 py-3 rounded-lg 
             font-semibold shadow-md transition-all hover:bg-teal-700 hover:shadow-lg"
