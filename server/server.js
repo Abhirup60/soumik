@@ -6,7 +6,7 @@ const authRouter = require("./router/auth-router");
 const ConnectDB = require("./utils/db");
 
 const corsOption = {
-  origin:"http://localhost:5173",
+  origin:"https://soumikbasu.onrender.com",
   methods:"GET, PUT, POST, PATCH, HEAD, DELETE",
   credentials:true,
 }
