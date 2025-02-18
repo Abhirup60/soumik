@@ -1,0 +1,128 @@
+/* Navbar Container */
+.container-navbar {
+    font-family: sans-serif;
+    background: linear-gradient(to right, rgb(96, 96, 213), rgb(37, 105, 128));
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar Section */
+.nav-sec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    height: 70px;
+}
+
+/* Left Section - Logo / Brand */
+.left {
+    flex: 1;
+}
+
+.left p {
+    font-size: 26px;
+    font-weight: 600;
+    margin-left: 40px;
+    cursor: pointer;
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.left p:hover {
+    filter: drop-shadow(5px 5px 10px black);
+    transform: scale(1.05);
+}
+
+/* Right Section - Navigation Links */
+.right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.right a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.right a:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(5px 5px 10px black);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    color: white;
+    margin-right: 20px;
+}
+
+/* -------- Responsive Media Queries -------- */
+
+/* Tablets (Below 1000px) */
+@media only screen and (max-width: 1000px) {
+    .nav-sec {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .right {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .right a {
+        font-size: 17px;
+        padding: 6px 12px;
+    }
+}
+
+/* Mobile Devices (Below 768px) */
+@media only screen and (max-width: 768px) {
+    .menu-icon {
+        display: block; /* Show the menu icon */
+    }
+
+    .right {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially hidden off-screen */
+        background: rgba(0, 0, 0, 0.9);
+        width: 60%;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        transition: right 0.4s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right a {
+        display: block;
+        padding: 15px;
+        font-size: 20px;
+        width: 100%;
+        color: white;
+    }
+
+    /* When menu is open */
+    .right.open {
+        right: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}
