@@ -2,6 +2,55 @@ import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 const Work = () => {
+  const [videoUrl, setVideoUrl] = useState("");
+  const [videos, setVideos] = useState([]);
+
+  // Fetch Videos from Backend
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const res = await axios.get("https://soumik-server.onrender.com/api/form/all-videos");
+        setVideos(res.data);
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
+    };
+    fetchVideos();
+  }, []);
+
+  // Extract Video ID
+  const extractVideoId = (url) => {
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const videoId = extractVideoId(videoUrl);
+    if (!videoId) {
+      alert("Invalid YouTube URL");
+      return;
+    }
+
+    try {
+      const res = await axios.post("https://soumik-server.onrender.com/api/form/videos/post", { url: videoUrl });
+      setVideos([...videos, res.data]);
+      setVideoUrl("");
+    } catch (error) {
+      console.error("Error saving video:", error);
+    }
+  };
+
+   // Handle Video Removal
+   const handleRemove = async (id) => {
+    try {
+      await axios.delete(`https://soumik-server.onrender.com/api/form/videos/${id}`);
+      setVideos(videos.filter((video) => video._id !== id));
+    } catch (error) {
+      console.error("Error deleting video:", error);
+    }
+  };
   return (
     <div className='min-h-screen bg-gradient-to-r from-blue-500 to-teal-600 p-4 sm:p-6 flex flex-col items-center'>
       {/* Short Films Section */}
@@ -22,7 +71,7 @@ const Work = () => {
         </form>
         {/* Embedded YouTube Videos */}
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3'>
-          <iframe
+          {/* <iframe
             className='w-full h-56 rounded-lg shadow-md'
             src='https://www.youtube.com/embed/5a8WgadO5bA'
             title='Short Film'
@@ -41,7 +90,36 @@ const Work = () => {
             src='https://www.youtube.com/embed/HzgUhntK_wM'
             title='Short Edited for Impression'
             allowFullScreen
-          ></iframe>
+          ></iframe> */}
+          {videos.map((video) => {
+            const videoId = extractVideoId(video.url);
+            return videoId ? (
+              <div key={video._id} style={{ marginTop: "20px" }}>
+                <iframe
+                  width='560'
+                  height='315'
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  frameBorder='0'
+                  allowFullScreen
+                  title='YouTube Video'
+                ></iframe>
+                <br />
+                <button
+                  onClick={() => handleRemove(video._id)}
+                  style={{
+                    padding: "5px 10px",
+                    marginTop: "10px",
+                    backgroundColor: "red",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ) : null;
+          })}
         </div>
       </div>
 
@@ -68,7 +146,7 @@ const Work = () => {
 
         {/* Embedded YouTube Videos */}
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3'>
-          <iframe
+          {/* <iframe
             className='w-full h-56 rounded-lg shadow-md'
             src='https://www.youtube.com/embed/MoY3HWG6if4?si=s6P3QTos_eetfCyM'
             title='Assistant Editing Project'
@@ -83,7 +161,36 @@ const Work = () => {
             title='Assistant Editing Project'
             allowFullScreen
             referrerpolicy='strict-origin-when-cross-origin'
-          ></iframe>
+          ></iframe> */}
+          {videos.map((video) => {
+            const videoId = extractVideoId(video.url);
+            return videoId ? (
+              <div key={video._id} style={{ marginTop: "20px" }}>
+                <iframe
+                  width='560'
+                  height='315'
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  frameBorder='0'
+                  allowFullScreen
+                  title='YouTube Video'
+                ></iframe>
+                <br />
+                <button
+                  onClick={() => handleRemove(video._id)}
+                  style={{
+                    padding: "5px 10px",
+                    marginTop: "10px",
+                    backgroundColor: "red",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ) : null;
+          })}
         </div>
       </div>
 
@@ -107,7 +214,7 @@ const Work = () => {
 
         {/* Embedded YouTube Videos */}
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3'>
-          <iframe
+          {/* <iframe
             className='w-full h-64 sm:h-80 md:h-96 rounded-lg shadow-md'
             src='https://youtube.com/embed/zLwvY3Db1H0?si=D_xXA_ewcUqIrSVE'
             title='YouTube Shorts'
@@ -149,7 +256,35 @@ const Work = () => {
             title='YouTube Shorts'
             referrerPolicy='strict-origin-when-cross-origin'
             allowFullScreen
-          ></iframe>
+          ></iframe> */}
+          {videos.map((video) => {
+            const videoId = extractVideoId(video.url);
+            return videoId ? (
+              <div key={video._id} style={{ marginTop: "20px" }}>
+                <iframe
+                  width='560'
+                  height='315'
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  allowFullScreen
+                  title='YouTube Video'
+                ></iframe>
+                <br />
+                <button
+                  onClick={() => handleRemove(video._id)}
+                  style={{
+                    padding: "5px 10px",
+                    marginTop: "10px",
+                    backgroundColor: "red",
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ) : null;
+          })}
         </div>
       </div>
     </div>

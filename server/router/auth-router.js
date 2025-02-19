@@ -15,4 +15,14 @@ router.route("/contact-details").get(authController.getAllContactData);
 
 // delete contact
 router.route("/contact/delete/:id").delete(authController.deleteUserById);
+
+//videos post to db 
+router.route("/videos/post").post(authController.postVideo);
+
+// videos get to ui
+router.route("/all-videos").get(authController.allVideos);
+
+// delete video
+router.route("/video/:id").delete(authController.deleteVideo);
+
 module.exports = router;

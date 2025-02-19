@@ -1,5 +1,6 @@
 // basically it is used to store the contact details . who will connect to me
 const Contact = require("../models/user-model");
+const Video = require("../models/video-model");
 
 // main contact-controller
 const contactForm = async (req, res) => {
@@ -35,4 +36,39 @@ const deleteUserById = async (req, res) => {
   }
 };
 
-module.exports = { contactForm, getAllContactData, deleteUserById };
+// videos get and post
+
+const postVideo = async (req, res) => {
+  const { url } = req.body;
+  if (!url) return res.status(400).json({ message: "URL is required" });
+
+  try {
+    const newVideo = new Video({ url });
+    await newVideo.save();
+    res.status(201).json(newVideo);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// API to Get all Videos
+const allVideos = async (req, res) => {
+  try {
+    const videos = await Video.find();
+    res.json(videos);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// delete videos
+const deleteVideo = async (req, res) => {
+  try {
+    await Video.findByIdAndDelete(req.params.id);
+    res.json({ message: "Video removed" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { contactForm, getAllContactData, deleteUserById, postVideo, allVideos, deleteVideo };
