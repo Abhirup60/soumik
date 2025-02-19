@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import axios from 'axios';
 
@@ -100,7 +100,6 @@ const Work = () => {
                   width='560'
                   height='315'
                   src={`https://www.youtube.com/embed/${videoId}`}
-                  frameBorder='0'
                   allowFullScreen
                   title='YouTube Video'
                 ></iframe>
