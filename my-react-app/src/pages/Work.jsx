@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 const Work = () => {
-
   return (
     <div className='min-h-screen bg-gradient-to-r from-blue-500 to-teal-600 p-4 sm:p-6 flex flex-col items-center'>
       {/* Short Films Section */}
       <div className='w-full max-w-6xl mb-8'>
         <h2 className='text-2xl font-semibold text-white text-center mb-4'>Short Films 🎬</h2>
-
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            placeholder='Enter YouTube URL'
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            required
+            style={{ width: "300px", padding: "8px", marginRight: "10px" }}
+          />
+          <button type='submit' style={{ padding: "8px 15px" }}>
+            Submit
+          </button>
+        </form>
         {/* Embedded YouTube Videos */}
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3'>
           <iframe
@@ -40,7 +51,19 @@ const Work = () => {
 
         {/*  */}
         {/* Upload Button */}
-
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            placeholder='Enter YouTube URL'
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            required
+            style={{ width: "300px", padding: "8px", marginRight: "10px" }}
+          />
+          <button type='submit' style={{ padding: "8px 15px" }}>
+            Submit
+          </button>
+        </form>
         {/*  */}
 
         {/* Embedded YouTube Videos */}
@@ -68,7 +91,20 @@ const Work = () => {
       <div className='w-full max-w-6xl mb-8'>
         <h2 className='text-2xl font-semibold text-white text-center mb-4'>Shorts Edited for Impression ✨</h2>
 
-        
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            placeholder='Enter YouTube URL'
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            required
+            style={{ width: "300px", padding: "8px", marginRight: "10px" }}
+          />
+          <button type='submit' style={{ padding: "8px 15px" }}>
+            Submit
+          </button>
+        </form>
+
         {/* Embedded YouTube Videos */}
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3'>
           <iframe
