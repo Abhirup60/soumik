@@ -53,7 +53,7 @@ const Work = () => {
   // Handle video removal
   const handleRemove = async (id, category) => {
     try {
-      await axios.delete(`https://soumik-server.onrender.com/api/form/videos/${id}`);
+      await axios.delete(`https://soumik-server.onrender.com/api/form/video/${id}`);
       setVideos(prev => ({ ...prev, [category]: prev[category].filter(video => video._id !== id) }));
     } catch (error) {
       console.error(`Error deleting ${category} video:`, error);
