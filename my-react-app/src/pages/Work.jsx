@@ -62,43 +62,40 @@ const Work = () => {
 
   // Reusable section component
   const VideoSection = ({ title, category }) => (
-    <div className="w-full max-w-6xl mb-8">
-      <h2 className="text-2xl font-semibold text-white text-center mb-4">{title}</h2>
-      <form onSubmit={(e) => handleSubmit(e, category)}>
+    <div className="w-full max-w-6xl mb-12">
+      <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-6">{title}</h2>
+      
+      <form onSubmit={(e) => handleSubmit(e, category)} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Enter YouTube URL"
           value={videoUrls[category]}
           onChange={(e) => setVideoUrls(prev => ({ ...prev, [category]: e.target.value }))}
           required
-          style={{ width: "300px", padding: "8px", marginRight: "10px" }}
+          className="w-full sm:w-96 px-4 py-2 text-black rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        <button type="submit" style={{ padding: "8px 15px" }}>Submit</button>
+        <button
+          type="submit"
+          className="px-5 py-2 bg-white text-blue-600 font-semibold rounded-md shadow-md hover:bg-blue-500 hover:text-white transition"
+        >
+          Submit
+        </button>
       </form>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {videos[category].map((video) => {
           const videoId = extractVideoId(video.url);
           return videoId ? (
-            <div key={video._id} style={{ marginTop: "20px" }}>
+            <div key={video._id} className="bg-white p-3 rounded-lg shadow-lg">
               <iframe
-                width="560"
-                height="315"
+                className="w-full h-48 sm:h-56 md:h-64 rounded-lg"
                 src={`https://www.youtube.com/embed/${videoId}`}
                 allowFullScreen
                 title="YouTube Video"
               ></iframe>
-              <br />
               <button
                 onClick={() => handleRemove(video._id, category)}
-                style={{
-                  padding: "5px 10px",
-                  marginTop: "10px",
-                  backgroundColor: "red",
-                  color: "white",
-                  border: "none",
-                  cursor: "pointer",
-                }}
+                className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition w-full"
               >
                 Remove
               </button>
@@ -110,7 +107,7 @@ const Work = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-600 p-4 sm:p-6 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-600 p-6 flex flex-col items-center">
       <VideoSection title="Short Films 🎬" category="shortFilms" />
       <VideoSection title="Projects as an Assistant Editor 🎞️" category="assistantEditor" />
       <VideoSection title="Shorts Edited for Impression ✨" category="shortsImpression" />
