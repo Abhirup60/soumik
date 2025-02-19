@@ -9,7 +9,7 @@ const Work = () => {
   useEffect(() => {
     const fetchVideos = async (category) => {
       try {
-        const res = await axios.get(`https://soumik-server.onrender.com/api/form/videos/${category}`);
+        const res = await axios.get(`https://soumik-server.onrender.com/api/form/all-videos/${category}`);
         setVideos(prev => ({ ...prev, [category]: res.data }));
       } catch (error) {
         console.error(`Error fetching ${category} videos:`, error);
