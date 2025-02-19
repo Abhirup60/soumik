@@ -20,7 +20,7 @@ router.route("/contact/delete/:id").delete(authController.deleteUserById);
 router.route("/videos/post").post(authController.postVideo);
 
 // videos get to ui
-router.route("/all-videos").get(authController.allVideos);
+router.route("/all-videos/:category").get(authController.allVideos);
 
 // delete video
 router.route("/video/:id").delete(authController.deleteVideo);

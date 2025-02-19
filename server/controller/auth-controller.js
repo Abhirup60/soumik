@@ -39,25 +39,28 @@ const deleteUserById = async (req, res) => {
 // videos get and post
 
 const postVideo = async (req, res) => {
-  const { url } = req.body;
-  if (!url) return res.status(400).json({ message: "URL is required" });
-
   try {
-    const newVideo = new Video({ url });
+    const { url, category } = req.body; // Get category from frontend
+    if (!url || !category) {
+      return res.status(400).json({ error: "URL and category are required" });
+    }
+
+    const newVideo = new Video({ url, category });
     await newVideo.save();
     res.status(201).json(newVideo);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: "Error saving video" });
   }
 };
 
 // API to Get all Videos
 const allVideos = async (req, res) => {
   try {
-    const videos = await Video.find();
+    const { category } = req.params;
+    const videos = await Video.find({ category });
     res.json(videos);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: "Error fetching videos" });
   }
 };
 
