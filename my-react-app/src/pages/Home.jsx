@@ -18,7 +18,7 @@ const Home = () => {
             <h1 id='name'>Hi, it's Soumik</h1>
             <p id='job'>I'm Video Editor & Film Maker</p>
             <p id='about' className='text-base'>
-              I'm Soumik, a visual storyteller. As a passionate freelance video editor with six months of hands
+              I'm Soumik, a visual storyteller. As a passionate freelance video editor with six months of hands-on
               experience, I've had the previllage of working with a variety of clients, creating cinematic visuals that
               tell compelling stories.{" "}
               <b className='text-cyan-200'>
